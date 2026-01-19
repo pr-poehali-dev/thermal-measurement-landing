@@ -3,10 +3,16 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import Icon from "@/components/ui/icon";
+import { ContactForm } from "@/components/ContactForm";
+import { PriceCalculator } from "@/components/PriceCalculator";
+import { WhatsAppButton } from "@/components/WhatsAppButton";
+import { PromoTimer } from "@/components/PromoTimer";
 
 const Index = () => {
   return (
     <div className="min-h-screen bg-background">
+      <WhatsAppButton />
+      
       <header className="border-b sticky top-0 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 z-50">
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
           <div className="flex items-center gap-2">
@@ -16,12 +22,13 @@ const Index = () => {
           <nav className="hidden md:flex gap-6">
             <a href="#services" className="text-sm hover:text-primary transition-colors">Услуги</a>
             <a href="#why-us" className="text-sm hover:text-primary transition-colors">Когда обращаться</a>
-            <a href="#advantages" className="text-sm hover:text-primary transition-colors">Преимущества</a>
-            <a href="#portfolio" className="text-sm hover:text-primary transition-colors">Портфолио</a>
+            <a href="#how-we-work" className="text-sm hover:text-primary transition-colors">Как работаем</a>
+            <a href="#reviews" className="text-sm hover:text-primary transition-colors">Отзывы</a>
             <a href="#prices" className="text-sm hover:text-primary transition-colors">Цены</a>
-            <a href="#faq" className="text-sm hover:text-primary transition-colors">FAQ</a>
           </nav>
-          <Button>Заказать замер</Button>
+          <Button onClick={() => document.getElementById('contact-form')?.scrollIntoView({ behavior: 'smooth' })}>
+            Заказать замер
+          </Button>
         </div>
       </header>
 
@@ -41,12 +48,12 @@ const Index = () => {
                 Аккредитация подтверждает нашу экспертность.
               </p>
               <div className="flex flex-wrap gap-4 pt-4">
-                <Button size="lg" className="bg-primary hover:bg-primary/90">
+                <Button size="lg" className="bg-primary hover:bg-primary/90" onClick={() => document.getElementById('contact-form')?.scrollIntoView({ behavior: 'smooth' })}>
                   <Icon name="Phone" size={20} className="mr-2" />
                   Заказать звонок
                 </Button>
-                <Button size="lg" variant="outline" className="bg-white/10 border-white/30 text-white hover:bg-white/20">
-                  Подробнее
+                <Button size="lg" variant="outline" className="bg-white/10 border-white/30 text-white hover:bg-white/20" onClick={() => document.getElementById('calculator')?.scrollIntoView({ behavior: 'smooth' })}>
+                  Рассчитать стоимость
                 </Button>
               </div>
               <div className="grid grid-cols-3 gap-6 pt-8 border-t border-white/20">
@@ -75,6 +82,12 @@ const Index = () => {
         </div>
       </section>
 
+      <section className="py-12 bg-white">
+        <div className="container mx-auto px-4">
+          <PromoTimer />
+        </div>
+      </section>
+
       <section id="why-us" className="py-20 bg-muted/30">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
@@ -84,7 +97,7 @@ const Index = () => {
             </p>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <Card className="border-2 hover:border-primary transition-colors">
+            <Card className="border-2 hover:border-primary transition-colors hover:shadow-lg">
               <CardHeader>
                 <Icon name="Home" size={40} className="text-primary mb-4" />
                 <CardTitle className="text-lg">Покупка недвижимости</CardTitle>
@@ -96,7 +109,7 @@ const Index = () => {
               </CardContent>
             </Card>
             
-            <Card className="border-2 hover:border-primary transition-colors">
+            <Card className="border-2 hover:border-primary transition-colors hover:shadow-lg">
               <CardHeader>
                 <Icon name="AlertTriangle" size={40} className="text-primary mb-4" />
                 <CardTitle className="text-lg">Высокие счета за отопление</CardTitle>
@@ -108,7 +121,7 @@ const Index = () => {
               </CardContent>
             </Card>
 
-            <Card className="border-2 hover:border-primary transition-colors">
+            <Card className="border-2 hover:border-primary transition-colors hover:shadow-lg">
               <CardHeader>
                 <Icon name="Building2" size={40} className="text-primary mb-4" />
                 <CardTitle className="text-lg">Строительный контроль</CardTitle>
@@ -120,7 +133,7 @@ const Index = () => {
               </CardContent>
             </Card>
 
-            <Card className="border-2 hover:border-primary transition-colors">
+            <Card className="border-2 hover:border-primary transition-colors hover:shadow-lg">
               <CardHeader>
                 <Icon name="Droplet" size={40} className="text-primary mb-4" />
                 <CardTitle className="text-lg">Поиск протечек</CardTitle>
@@ -135,6 +148,122 @@ const Index = () => {
         </div>
       </section>
 
+      <section id="how-we-work" className="py-20">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">Как мы работаем</h2>
+            <p className="text-muted-foreground">Простой и понятный процесс от заявки до результата</p>
+          </div>
+          <div className="grid md:grid-cols-4 gap-8">
+            <div className="text-center">
+              <div className="w-20 h-20 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
+                <span className="text-3xl font-bold text-primary">1</span>
+              </div>
+              <h3 className="font-semibold text-lg mb-2">Заявка</h3>
+              <p className="text-sm text-muted-foreground">
+                Оставляете заявку на сайте или звоните нам
+              </p>
+              <div className="text-xs text-primary font-semibold mt-2">5 минут</div>
+            </div>
+
+            <div className="text-center">
+              <div className="w-20 h-20 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
+                <span className="text-3xl font-bold text-primary">2</span>
+              </div>
+              <h3 className="font-semibold text-lg mb-2">Консультация</h3>
+              <p className="text-sm text-muted-foreground">
+                Специалист перезванивает, уточняет детали и назначает время
+              </p>
+              <div className="text-xs text-primary font-semibold mt-2">15 минут</div>
+            </div>
+
+            <div className="text-center">
+              <div className="w-20 h-20 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
+                <span className="text-3xl font-bold text-primary">3</span>
+              </div>
+              <h3 className="font-semibold text-lg mb-2">Выезд и обследование</h3>
+              <p className="text-sm text-muted-foreground">
+                Проводим тепловизионную съёмку объекта
+              </p>
+              <div className="text-xs text-primary font-semibold mt-2">1-4 часа</div>
+            </div>
+
+            <div className="text-center">
+              <div className="w-20 h-20 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
+                <span className="text-3xl font-bold text-primary">4</span>
+              </div>
+              <h3 className="font-semibold text-lg mb-2">Отчёт</h3>
+              <p className="text-sm text-muted-foreground">
+                Получаете подробный отчёт с рекомендациями
+              </p>
+              <div className="text-xs text-primary font-semibold mt-2">2-3 дня</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="before-after" className="py-20 bg-muted/30">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">Примеры наших работ</h2>
+            <p className="text-muted-foreground">Реальные термограммы до и после устранения проблем</p>
+          </div>
+          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+            <Card className="overflow-hidden">
+              <img 
+                src="https://cdn.poehali.dev/projects/c6eefc68-f2a6-42ab-a8e1-7e76505b0f0b/files/f4dad543-150d-4036-935a-f37432de5566.jpg"
+                alt="Термограмма до/после"
+                className="w-full h-64 object-cover"
+              />
+              <CardHeader>
+                <CardTitle>Утепление фасада</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="grid grid-cols-2 gap-4 text-sm">
+                  <div>
+                    <div className="font-semibold text-red-600">До:</div>
+                    <div className="text-muted-foreground">Теплопотери 45%</div>
+                  </div>
+                  <div>
+                    <div className="font-semibold text-green-600">После:</div>
+                    <div className="text-muted-foreground">Теплопотери 8%</div>
+                  </div>
+                </div>
+                <p className="text-xs text-muted-foreground mt-4">
+                  Экономия на отоплении: 12 000 ₽/месяц
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="overflow-hidden">
+              <img 
+                src="https://cdn.poehali.dev/projects/c6eefc68-f2a6-42ab-a8e1-7e76505b0f0b/files/0e1d6ae9-20d3-4772-9ec4-cd22ea17d281.jpg"
+                alt="Термограмма окна"
+                className="w-full h-64 object-cover"
+              />
+              <CardHeader>
+                <CardTitle>Замена окон</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="grid grid-cols-2 gap-4 text-sm">
+                  <div>
+                    <div className="font-semibold text-red-600">До:</div>
+                    <div className="text-muted-foreground">Продувание 60%</div>
+                  </div>
+                  <div>
+                    <div className="font-semibold text-green-600">После:</div>
+                    <div className="text-muted-foreground">Герметичность 98%</div>
+                  </div>
+                </div>
+                <p className="text-xs text-muted-foreground mt-4">
+                  Экономия на отоплении: 7 500 ₽/месяц
+                </p>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
+
       <section id="services" className="py-20">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
@@ -142,7 +271,7 @@ const Index = () => {
             <p className="text-muted-foreground">Полный спектр тепловизионных исследований</p>
           </div>
           <div className="grid md:grid-cols-3 gap-8">
-            <Card>
+            <Card className="hover:shadow-xl transition-shadow">
               <CardHeader>
                 <Icon name="Building" size={48} className="text-primary mb-4" />
                 <CardTitle>Обследование зданий</CardTitle>
@@ -168,7 +297,7 @@ const Index = () => {
               </CardContent>
             </Card>
 
-            <Card>
+            <Card className="hover:shadow-xl transition-shadow">
               <CardHeader>
                 <Icon name="Zap" size={48} className="text-primary mb-4" />
                 <CardTitle>Электротехнический аудит</CardTitle>
@@ -194,7 +323,7 @@ const Index = () => {
               </CardContent>
             </Card>
 
-            <Card>
+            <Card className="hover:shadow-xl transition-shadow">
               <CardHeader>
                 <Icon name="Factory" size={48} className="text-primary mb-4" />
                 <CardTitle>Промышленные объекты</CardTitle>
@@ -223,7 +352,89 @@ const Index = () => {
         </div>
       </section>
 
-      <section id="advantages" className="py-20 bg-muted/30">
+      <section id="reviews" className="py-20 bg-muted/30">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">Отзывы клиентов</h2>
+            <p className="text-muted-foreground">Что говорят о нас наши клиенты</p>
+          </div>
+          <div className="grid md:grid-cols-3 gap-8">
+            <Card>
+              <CardHeader>
+                <div className="flex items-center gap-4 mb-2">
+                  <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
+                    <Icon name="User" size={24} className="text-primary" />
+                  </div>
+                  <div>
+                    <CardTitle className="text-lg">Александр Иванов</CardTitle>
+                    <p className="text-sm text-muted-foreground">Владелец частного дома</p>
+                  </div>
+                </div>
+                <div className="flex gap-1">
+                  {[1, 2, 3, 4, 5].map((star) => (
+                    <Icon key={star} name="Star" size={16} className="fill-yellow-400 text-yellow-400" />
+                  ))}
+                </div>
+              </CardHeader>
+              <CardContent>
+                <p className="text-sm text-muted-foreground">
+                  "Обследовали дом перед покупкой. Нашли серьёзные проблемы с утеплением кровли, которые не были видны при обычном осмотре. Сэкономили на торге 300 тысяч рублей. Спасибо команде!"
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card>
+              <CardHeader>
+                <div className="flex items-center gap-4 mb-2">
+                  <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
+                    <Icon name="User" size={24} className="text-primary" />
+                  </div>
+                  <div>
+                    <CardTitle className="text-lg">Елена Смирнова</CardTitle>
+                    <p className="text-sm text-muted-foreground">Управляющая ЖК</p>
+                  </div>
+                </div>
+                <div className="flex gap-1">
+                  {[1, 2, 3, 4, 5].map((star) => (
+                    <Icon key={star} name="Star" size={16} className="fill-yellow-400 text-yellow-400" />
+                  ))}
+                </div>
+              </CardHeader>
+              <CardContent>
+                <p className="text-sm text-muted-foreground">
+                  "Работали с ними по обследованию 15 домов нашего ЖК. Профессиональный подход, детальные отчёты, все в срок. Теперь знаем точные места теплопотерь и план работ на год."
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card>
+              <CardHeader>
+                <div className="flex items-center gap-4 mb-2">
+                  <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
+                    <Icon name="User" size={24} className="text-primary" />
+                  </div>
+                  <div>
+                    <CardTitle className="text-lg">Дмитрий Петров</CardTitle>
+                    <p className="text-sm text-muted-foreground">Директор завода</p>
+                  </div>
+                </div>
+                <div className="flex gap-1">
+                  {[1, 2, 3, 4, 5].map((star) => (
+                    <Icon key={star} name="Star" size={16} className="fill-yellow-400 text-yellow-400" />
+                  ))}
+                </div>
+              </CardHeader>
+              <CardContent>
+                <p className="text-sm text-muted-foreground">
+                  "Провели энергоаудит цехов. Выявили перегрев оборудования, который мог привести к аварии. Предотвратили простой производства стоимостью в миллионы. Рекомендую!"
+                </p>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
+
+      <section id="advantages" className="py-20">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">Почему выбирают нас</h2>
@@ -316,6 +527,52 @@ const Index = () => {
         </div>
       </section>
 
+      <section id="certificates" className="py-20 bg-muted/30">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">Сертификаты и лицензии</h2>
+            <p className="text-muted-foreground">Официальные документы, подтверждающие нашу квалификацию</p>
+          </div>
+          <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+            <Card className="overflow-hidden hover:shadow-xl transition-shadow">
+              <img 
+                src="https://cdn.poehali.dev/projects/c6eefc68-f2a6-42ab-a8e1-7e76505b0f0b/files/3d7d9deb-ec55-48ae-a377-8d1850c828d9.jpg"
+                alt="Аттестат аккредитации"
+                className="w-full h-64 object-cover"
+              />
+              <CardHeader>
+                <CardTitle className="text-center">Аттестат аккредитации</CardTitle>
+                <p className="text-center text-sm text-muted-foreground">№ RA.RU.21ЭТ99</p>
+              </CardHeader>
+            </Card>
+
+            <Card className="overflow-hidden hover:shadow-xl transition-shadow">
+              <img 
+                src="https://cdn.poehali.dev/projects/c6eefc68-f2a6-42ab-a8e1-7e76505b0f0b/files/3d7d9deb-ec55-48ae-a377-8d1850c828d9.jpg"
+                alt="Свидетельство СРО"
+                className="w-full h-64 object-cover"
+              />
+              <CardHeader>
+                <CardTitle className="text-center">Свидетельство СРО</CardTitle>
+                <p className="text-center text-sm text-muted-foreground">Строительная экспертиза</p>
+              </CardHeader>
+            </Card>
+
+            <Card className="overflow-hidden hover:shadow-xl transition-shadow">
+              <img 
+                src="https://cdn.poehali.dev/projects/c6eefc68-f2a6-42ab-a8e1-7e76505b0f0b/files/3d7d9deb-ec55-48ae-a377-8d1850c828d9.jpg"
+                alt="ISO сертификат"
+                className="w-full h-64 object-cover"
+              />
+              <CardHeader>
+                <CardTitle className="text-center">ISO 9001:2015</CardTitle>
+                <p className="text-center text-sm text-muted-foreground">Система менеджмента качества</p>
+              </CardHeader>
+            </Card>
+          </div>
+        </div>
+      </section>
+
       <section id="portfolio" className="py-20">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
@@ -323,7 +580,7 @@ const Index = () => {
             <p className="text-muted-foreground">Примеры выполненных проектов</p>
           </div>
           <div className="grid md:grid-cols-3 gap-8">
-            <Card className="overflow-hidden">
+            <Card className="overflow-hidden hover:shadow-xl transition-shadow">
               <img 
                 src="https://cdn.poehali.dev/projects/c6eefc68-f2a6-42ab-a8e1-7e76505b0f0b/files/0e1d6ae9-20d3-4772-9ec4-cd22ea17d281.jpg" 
                 alt="Тепловизионное обследование"
@@ -339,7 +596,7 @@ const Index = () => {
               </CardContent>
             </Card>
 
-            <Card className="overflow-hidden">
+            <Card className="overflow-hidden hover:shadow-xl transition-shadow">
               <img 
                 src="https://cdn.poehali.dev/projects/c6eefc68-f2a6-42ab-a8e1-7e76505b0f0b/files/8b5223f1-a64a-45ba-a50f-4a20ae2629bd.jpg" 
                 alt="Производственное здание"
@@ -355,7 +612,7 @@ const Index = () => {
               </CardContent>
             </Card>
 
-            <Card className="overflow-hidden">
+            <Card className="overflow-hidden hover:shadow-xl transition-shadow">
               <img 
                 src="https://cdn.poehali.dev/projects/c6eefc68-f2a6-42ab-a8e1-7e76505b0f0b/files/0e1d6ae9-20d3-4772-9ec4-cd22ea17d281.jpg" 
                 alt="Частный дом"
@@ -403,8 +660,8 @@ const Index = () => {
             <h2 className="text-3xl md:text-4xl font-bold mb-4">Цены на услуги</h2>
             <p className="text-muted-foreground">Прозрачное ценообразование без скрытых платежей</p>
           </div>
-          <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-            <Card className="border-2">
+          <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto mb-12">
+            <Card className="border-2 hover:shadow-xl transition-shadow">
               <CardHeader>
                 <CardTitle>Квартира</CardTitle>
                 <div className="text-3xl font-bold mt-4">
@@ -430,11 +687,11 @@ const Index = () => {
                     <span className="text-sm">Рекомендации по устранению</span>
                   </li>
                 </ul>
-                <Button className="w-full">Заказать</Button>
+                <Button className="w-full" onClick={() => document.getElementById('contact-form')?.scrollIntoView({ behavior: 'smooth' })}>Заказать</Button>
               </CardContent>
             </Card>
 
-            <Card className="border-2 border-primary relative">
+            <Card className="border-2 border-primary relative hover:shadow-xl transition-shadow">
               <div className="absolute -top-3 left-1/2 -translate-x-1/2">
                 <Badge className="bg-primary">Популярное</Badge>
               </div>
@@ -467,11 +724,11 @@ const Index = () => {
                     <span className="text-sm">План устранения дефектов</span>
                   </li>
                 </ul>
-                <Button className="w-full">Заказать</Button>
+                <Button className="w-full" onClick={() => document.getElementById('contact-form')?.scrollIntoView({ behavior: 'smooth' })}>Заказать</Button>
               </CardContent>
             </Card>
 
-            <Card className="border-2">
+            <Card className="border-2 hover:shadow-xl transition-shadow">
               <CardHeader>
                 <CardTitle>Коммерческий объект</CardTitle>
                 <div className="text-3xl font-bold mt-4">
@@ -501,17 +758,69 @@ const Index = () => {
                     <span className="text-sm">Работа с юридическими лицами</span>
                   </li>
                 </ul>
-                <Button className="w-full">Заказать</Button>
+                <Button className="w-full" onClick={() => document.getElementById('contact-form')?.scrollIntoView({ behavior: 'smooth' })}>Заказать</Button>
               </CardContent>
             </Card>
           </div>
+
+          <div id="calculator" className="max-w-2xl mx-auto">
+            <PriceCalculator />
+          </div>
+
           <div className="text-center mt-8 text-muted-foreground">
             <p>* Итоговая стоимость зависит от площади и сложности объекта</p>
           </div>
         </div>
       </section>
 
-      <section id="accreditation" className="py-20">
+      <section id="coverage" className="py-20">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">География работы</h2>
+            <p className="text-muted-foreground">Работаем в Москве и Московской области</p>
+          </div>
+          <Card className="max-w-4xl mx-auto">
+            <CardContent className="p-8">
+              <div className="grid md:grid-cols-2 gap-8 items-center">
+                <div>
+                  <div className="w-full h-64 bg-muted rounded-lg flex items-center justify-center">
+                    <Icon name="MapPin" size={80} className="text-primary" />
+                  </div>
+                </div>
+                <div className="space-y-4">
+                  <div className="flex items-start gap-3">
+                    <Icon name="Check" size={20} className="text-primary mt-0.5" />
+                    <div>
+                      <div className="font-semibold">Москва</div>
+                      <div className="text-sm text-muted-foreground">В пределах МКАД — бесплатный выезд</div>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <Icon name="Check" size={20} className="text-primary mt-0.5" />
+                    <div>
+                      <div className="font-semibold">Московская область</div>
+                      <div className="text-sm text-muted-foreground">До 50 км от МКАД</div>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <Icon name="Check" size={20} className="text-primary mt-0.5" />
+                    <div>
+                      <div className="font-semibold">Другие регионы</div>
+                      <div className="text-sm text-muted-foreground">Возможен выезд по договорённости</div>
+                    </div>
+                  </div>
+                  <div className="pt-4 border-t">
+                    <p className="text-sm font-semibold mb-2">Время выезда:</p>
+                    <p className="text-sm text-muted-foreground">В пределах МКАД — в день обращения<br/>За МКАД — на следующий день</p>
+                  </div>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+      </section>
+
+      <section id="accreditation" className="py-20 bg-muted/30">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <Card className="border-primary border-2">
@@ -551,7 +860,7 @@ const Index = () => {
         </div>
       </section>
 
-      <section id="faq" className="py-20 bg-muted/30">
+      <section id="faq" className="py-20">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">Частые вопросы</h2>
@@ -616,23 +925,49 @@ const Index = () => {
         </div>
       </section>
 
-      <section className="py-20 bg-gradient-to-br from-primary to-primary/80 text-white">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Готовы заказать тепловизионное обследование?
-          </h2>
-          <p className="text-xl mb-8 text-white/90 max-w-2xl mx-auto">
-            Оставьте заявку, и наш специалист свяжется с вами в течение 15 минут
-          </p>
-          <div className="flex flex-wrap gap-4 justify-center">
-            <Button size="lg" variant="secondary" className="bg-white text-primary hover:bg-white/90">
-              <Icon name="Phone" size={20} className="mr-2" />
-              +7 (495) 123-45-67
-            </Button>
-            <Button size="lg" variant="outline" className="bg-white/10 border-white text-white hover:bg-white/20">
-              <Icon name="Mail" size={20} className="mr-2" />
-              info@termoexpert.ru
-            </Button>
+      <section id="contact-form" className="py-20 bg-gradient-to-br from-primary to-primary/80">
+        <div className="container mx-auto px-4">
+          <div className="grid md:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
+            <div className="text-white">
+              <h2 className="text-3xl md:text-4xl font-bold mb-4">
+                Готовы заказать тепловизионное обследование?
+              </h2>
+              <p className="text-xl mb-8 text-white/90">
+                Оставьте заявку, и наш специалист свяжется с вами в течение 15 минут
+              </p>
+              <div className="space-y-4">
+                <div className="flex items-center gap-3">
+                  <div className="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center">
+                    <Icon name="Phone" size={24} />
+                  </div>
+                  <div>
+                    <div className="font-semibold">Телефон</div>
+                    <div className="text-white/90">+7 (495) 123-45-67</div>
+                  </div>
+                </div>
+                <div className="flex items-center gap-3">
+                  <div className="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center">
+                    <Icon name="Mail" size={24} />
+                  </div>
+                  <div>
+                    <div className="font-semibold">Email</div>
+                    <div className="text-white/90">info@termoexpert.ru</div>
+                  </div>
+                </div>
+                <div className="flex items-center gap-3">
+                  <div className="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center">
+                    <Icon name="MapPin" size={24} />
+                  </div>
+                  <div>
+                    <div className="font-semibold">Адрес</div>
+                    <div className="text-white/90">Москва, ул. Примерная, д. 1</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div>
+              <ContactForm />
+            </div>
           </div>
         </div>
       </section>
